@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import Provider from './contexts/provider';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
@@ -16,26 +23,3 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-
-
-
-import React from 'react';
-import { Button } from './styles';
-
-interface ButtonProps {
-  text: React.ReactNode;
-  height: string;
-  onClick: () => void;
-  width: string;
-  fontSize: string;
-}
-
-const ButtonTag = ({ text, height, onClick, width, fontSize }: ButtonProps) => (
-  <Button>
-    <button type='button' style={{ height, width, fontSize }} onClick={onClick}>
-      {text}
-    </button>
-  </Button>
-);
-
-export default ButtonTag;
